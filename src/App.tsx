@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from "@react-three/fiber";
+import { AgentCarr } from "./AgentCarr";
+import { Environment, OrbitControls } from "@react-three/drei";
+import { Suspense } from "react";
+import { ModelLoader } from "./ModelLoader";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="canvas-container" style={{ width: "100vw", height: "100vh" }}>
+      <Canvas
+        // gl={{ preserveDrawingBuffer: true }}
+        // shadows
+        // dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 150], fov: 50 }}
+      >
+        <ambientLight intensity={1} />
+        <Suspense fallback={<ModelLoader />}>
+          <AgentCarr />
+        </Suspense>
+        <OrbitControls autoRotate />
+        <Environment preset="forest" background />
+      </Canvas>
     </div>
   );
 }
-
 export default App;
