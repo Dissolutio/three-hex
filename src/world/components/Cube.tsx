@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-export const Cube = (props: Props) => {
+export const Cube = () => {
   return (
     <>
       <mesh>

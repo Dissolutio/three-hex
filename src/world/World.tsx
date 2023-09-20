@@ -1,10 +1,9 @@
-import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 
-import { AgentCarr } from "../AgentCarr";
-import { ModelLoader } from "./components/ModelLoader";
+import { AgentCarr } from "./components/AgentCarr";
 import { Cube } from "./components/Cube";
+import { SpinningCube } from "./components/SpinningCube";
 
 type Props = {};
 
@@ -17,10 +16,8 @@ export const World = (props: Props) => {
       camera={{ position: [0, 0, 150], fov: 50 }}
     >
       <ambientLight intensity={1} />
-      <Suspense fallback={<ModelLoader />}>
-        <AgentCarr />
-      </Suspense>
-      <Cube />
+      <AgentCarr />
+      <SpinningCube />
       <OrbitControls autoRotate />
       <Environment preset="forest" background />
     </Canvas>
