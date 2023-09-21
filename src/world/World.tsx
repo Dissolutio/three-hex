@@ -18,26 +18,33 @@ import { FirstCar } from "./components/FirstCar";
 
 export const World = () => {
   return (
-    <Canvas
-      // gl={{ preserveDrawingBuffer: true }}
-      // shadows
-      // dpr={[1, 1.5]}
-      camera={{ position: [0, 5, 10], fov: 50 }}
-    >
+    <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
       <ambientLight intensity={1} />
-      {/* <AgentCarr /> */}
-      <FirstCar />
-      {/* <SpinningCube /> */}
-      {/* <Cube position={[10, 0, 0]} /> */}
-      {/* <Box args={[3, 3, 3]}>
+      <AgentCarr />
+      <SpinningCube />
+      <Cube position={[10, 0, 0]} />
+      <Box args={[3, 3, 3]}>
         <meshStandardMaterial color="hotpink" />
-      </Box> */}
+      </Box>
       <OrbitControls autoRotate />
-      <Environment preset="city" background />
+      <Environment files="/potsdamer_platz_1k.hdr" background />
     </Canvas>
   );
 };
-export const Text3DExampleApp = () => {
+
+export const FirstCarApp = () => {
+  return (
+    <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
+      <ambientLight intensity={1} />
+      <FirstCar />
+      <OrbitControls autoRotate />
+      <Environment files="/potsdamer_platz_1k.hdr" background ground />
+    </Canvas>
+  );
+};
+
+export const Text3DExampleApp = ({ margin = 0.5 }) => {
+  const { width, height } = useThree((state) => state.viewport);
   const magenta = new Color("#ff2080");
   const green = new Color("#20ff80");
   const blue = new Color("#2080ff");
@@ -45,25 +52,6 @@ export const Text3DExampleApp = () => {
     <Canvas orthographic camera={{ position: [0, 0, 100], zoom: 100 }}>
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 10]} />
-      <Text3DExampleScene />
-      <axesHelper
-        scale={2}
-        position={[0, 0, 0]}
-        onUpdate={(self) => self.setColors(magenta, green, blue)}
-      />
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        minPolarAngle={Math.PI / 2}
-        maxPolarAngle={Math.PI / 2}
-      />
-    </Canvas>
-  );
-};
-function Text3DExampleScene({ margin = 0.5 }) {
-  const { width, height } = useThree((state) => state.viewport);
-  return (
-    <>
       <Center
         bottom
         right
@@ -99,6 +87,17 @@ function Text3DExampleScene({ margin = 0.5 }) {
           <StarbucksCup scale={2} />
         </Center>
       </Center>
-    </>
+      <axesHelper
+        scale={2}
+        position={[0, 0, 0]}
+        onUpdate={(self) => self.setColors(magenta, green, blue)}
+      />
+      <OrbitControls
+        enableZoom={false}
+        enablePan={false}
+        minPolarAngle={Math.PI / 2}
+        maxPolarAngle={Math.PI / 2}
+      />
+    </Canvas>
   );
-}
+};
