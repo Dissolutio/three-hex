@@ -17,7 +17,7 @@ export const SpinningCube = (props: Props) => {
 
   return (
     <group position={position}>
-      <mesh ref={boxMesh} rotation={[10, 10, 0]}>
+      <mesh ref={boxMesh} rotation={[10, 10, 0]} position={[0, 0, -20]}>
         <boxGeometry args={[2, 2, 2]} />
         <meshStandardMaterial color={0xcc0000} />
       </mesh>

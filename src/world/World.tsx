@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Box, Environment, OrbitControls } from "@react-three/drei";
 
 import { AgentCarr } from "./components/AgentCarr";
 import { Cube } from "./components/Cube";
@@ -18,6 +18,10 @@ export const World = (props: Props) => {
       <ambientLight intensity={1} />
       <AgentCarr />
       <SpinningCube />
+      <Cube position={[10, 0, 0]} />
+      <Box args={[3, 3, 3]}>
+        <meshStandardMaterial color="hotpink" />
+      </Box>
       <OrbitControls autoRotate />
       <Environment preset="forest" background />
     </Canvas>
