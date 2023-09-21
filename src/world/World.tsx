@@ -12,6 +12,7 @@ import { AgentCarr } from "./components/AgentCarr";
 import { Cube } from "./components/Cube";
 import { SpinningCube } from "./components/SpinningCube";
 import { StarbucksCup } from "./components/StarbucksCup";
+import { FirstCar } from "./components/FirstCar";
 
 export const World = () => {
   return (
@@ -19,17 +20,18 @@ export const World = () => {
       // gl={{ preserveDrawingBuffer: true }}
       // shadows
       // dpr={[1, 1.5]}
-      camera={{ position: [0, 0, 150], fov: 50 }}
+      camera={{ position: [0, 5, 10], fov: 50 }}
     >
       <ambientLight intensity={1} />
-      <AgentCarr />
-      <SpinningCube />
-      <Cube position={[10, 0, 0]} />
-      <Box args={[3, 3, 3]}>
+      {/* <AgentCarr /> */}
+      <FirstCar />
+      {/* <SpinningCube /> */}
+      {/* <Cube position={[10, 0, 0]} /> */}
+      {/* <Box args={[3, 3, 3]}>
         <meshStandardMaterial color="hotpink" />
-      </Box>
+      </Box> */}
       <OrbitControls autoRotate />
-      <Environment preset="forest" background />
+      <Environment preset="city" background />
     </Canvas>
   );
 };
