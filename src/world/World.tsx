@@ -14,6 +14,8 @@ import { SpinningCube } from "./components/SpinningCube";
 import { StarbucksCup } from "./components/StarbucksCup";
 import { FirstCar } from "./components/FirstCar";
 
+// TODO: https://studiox.lib.rochester.edu/my-journey-with-blender-and-some-tutorials-to-get-you-started/
+
 export const World = () => {
   return (
     <Canvas
