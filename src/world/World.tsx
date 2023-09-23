@@ -18,7 +18,7 @@ import { FirstCar } from "./components/FirstCar";
 
 export const World = () => {
   return (
-    <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
+    <Canvas camera={{ position: [0, 5, 100], fov: 50 }}>
       <ambientLight intensity={1} />
       <AgentCarr />
       <SpinningCube />
@@ -38,7 +38,7 @@ export const FirstCarApp = () => {
       <ambientLight intensity={1} />
       <FirstCar />
       <OrbitControls autoRotate />
-      <Environment files="/potsdamer_platz_1k.hdr" background ground />
+      <Environment files="/potsdamer_platz_1k.hdr" background />
     </Canvas>
   );
 };
