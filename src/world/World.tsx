@@ -13,6 +13,7 @@ import { Cube } from "./components/Cube";
 import { SpinningCube } from "./components/SpinningCube";
 import { StarbucksCup } from "./components/StarbucksCup";
 import { FirstCar } from "./components/FirstCar";
+import { FloatingIsland } from "./components/FloatingIsland";
 
 // TODO: https://studiox.lib.rochester.edu/my-journey-with-blender-and-some-tutorials-to-get-you-started/
 
@@ -39,6 +40,16 @@ export const FirstCarApp = () => {
       <FirstCar />
       <OrbitControls autoRotate />
       <Environment files="/potsdamer_platz_1k.hdr" background />
+    </Canvas>
+  );
+};
+export const FloatingIslandApp = () => {
+  return (
+    <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
+      <ambientLight intensity={1} />
+      <FloatingIsland />
+      <OrbitControls autoRotate />
+      <Environment files="/GCanyon_C_YumaPoint_3k.hdr" background />
     </Canvas>
   );
 };
