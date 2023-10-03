@@ -1,5 +1,5 @@
 import { Suspense, useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { Gltf, useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { ModelLoader } from "./ModelLoader";
 
@@ -11,11 +11,13 @@ type GLTFResult = GLTF & {
 };
 
 export function AgentCarr() {
-  const group = useRef();
-  const { nodes } = useGLTF("/Agent_Karr_Scanned.glb") as GLTFResult;
+  // const group = useRef();
+  // const { nodes } = useGLTF("/agent_carr_low_poly_colored_1.glb") as GLTFResult;
   return (
     <Suspense fallback={<ModelLoader />}>
-      <group ref={group} dispose={null} scale={1}>
+      <Gltf src="/agent_carr_low_poly_colored_1.glb" receiveShadow castShadow />
+
+      {/* <group ref={group} dispose={null} scale={1}>
         <mesh
           castShadow
           receiveShadow
@@ -23,7 +25,7 @@ export function AgentCarr() {
           material={nodes.mesh_0.material}
           rotation={[-Math.PI / 2, 0, 0]}
         />
-      </group>
+      </group> */}
     </Suspense>
   );
 }

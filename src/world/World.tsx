@@ -5,6 +5,7 @@ import {
   Center,
   Environment,
   OrbitControls,
+  Sky,
   Text3D,
 } from "@react-three/drei";
 
@@ -20,9 +21,26 @@ import { FloatingIsland } from "./components/FloatingIsland";
 export const World = () => {
   return (
     <Canvas camera={{ position: [0, 5, 100], fov: 50 }}>
-      <ambientLight intensity={1} />
+      {/* <Sky
+        distance={450000}
+        sunPosition={[0, 1, 0]}
+        inclination={0}
+        azimuth={0.25}
+      /> */}
+      <directionalLight position={[10, 10, 5]} intensity={2} />
+      <directionalLight position={[-10, -10, -5]} intensity={1} />
       <AgentCarr />
+      <OrbitControls autoRotate />
+      <Environment files="/potsdamer_platz_1k.hdr" background />
+    </Canvas>
+  );
+};
+export const AgentCarrApp = () => {
+  return (
+    <Canvas camera={{ position: [0, 5, 100], fov: 50 }}>
+      <ambientLight intensity={1} />
       <SpinningCube />
+      <AgentCarr />
       <Cube position={[10, 0, 0]} />
       <Box args={[3, 3, 3]}>
         <meshStandardMaterial color="hotpink" />

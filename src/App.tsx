@@ -8,10 +8,10 @@ import {
 function App() {
   return (
     <div id="canvas-container" style={{ width: "100vw", height: "100vh" }}>
-      {/* <World /> */}
+      <World />
       {/* <FirstCarApp /> */}
       {/* <Text3DExampleApp /> */}
-      <FloatingIslandApp />
+      {/* <FloatingIslandApp /> */}
     </div>
   );
 }
