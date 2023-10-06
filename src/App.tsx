@@ -1,4 +1,6 @@
+import { CubeCloud } from "./world/CubeCloud";
 import {
+  AgentCarrApp,
   FirstCarApp,
   FloatingIslandApp,
   Text3DExampleApp,
@@ -8,7 +10,9 @@ import {
 function App() {
   return (
     <div id="canvas-container" style={{ width: "100vw", height: "100vh" }}>
-      <World />
+      <CubeCloud />
+      {/* <World /> */}
+      {/* <AgentCarrApp /> */}
       {/* <FirstCarApp /> */}
       {/* <Text3DExampleApp /> */}
       {/* <FloatingIslandApp /> */}
