@@ -1,56 +1,67 @@
 import { Canvas, useThree } from "@react-three/fiber";
-import { Color } from "three";
+import { Color, MeshBasicMaterial, MeshPhongMaterial } from "three";
 import {
-  Box,
   Center,
   Environment,
   OrbitControls,
-  Sky,
+  PerspectiveCamera,
   Text3D,
+  Sky,
+  PointerLockControls,
+  Cloud,
+  Stage,
+  MapControls,
+  CameraControls,
 } from "@react-three/drei";
 
 import { AgentCarr } from "./components/AgentCarr";
-import { Cube } from "./components/Cube";
-import { SpinningCube } from "./components/SpinningCube";
 import { StarbucksCup } from "./components/StarbucksCup";
 import { FirstCar } from "./components/FirstCar";
 import { FloatingIsland } from "./components/FloatingIsland";
+import { HexMap3D } from "./HexMap3D";
 
-// TODO: https://studiox.lib.rochester.edu/my-journey-with-blender-and-some-tutorials-to-get-you-started/
+export function HexApp() {
+  return (
+    <Canvas camera={{ position: [0, 0, 0.01] }}>
+      <ambientLight intensity={0.85} />
+      <directionalLight position={[150, 150, 150]} intensity={1} />
+      <HexMap3D />
+      <axesHelper position={[0, 1, 0]} scale={1000} />
+      <CameraControls />
+      <PerspectiveCamera makeDefault position={[0, 4, 8]} fov={50} />
+    </Canvas>
+  );
+}
 
 export const World = () => {
   return (
-    <Canvas camera={{ position: [0, 5, 100], fov: 50 }}>
-      {/* <Sky
-        distance={450000}
-        sunPosition={[0, 1, 0]}
-        inclination={0}
-        azimuth={0.25}
-      /> */}
-      <directionalLight position={[10, 10, 5]} intensity={2} />
-      <directionalLight position={[-10, -10, -5]} intensity={1} />
-      <AgentCarr />
-      <OrbitControls autoRotate />
-      <Environment files="/potsdamer_platz_1k.hdr" background />
-    </Canvas>
-  );
-};
-export const AgentCarrApp = () => {
-  return (
-    <Canvas camera={{ position: [0, 5, 100], fov: 50 }}>
-      <ambientLight intensity={1} />
-      <SpinningCube />
-      <AgentCarr />
-      <Cube position={[10, 0, 0]} />
-      <Box args={[3, 3, 3]}>
-        <meshStandardMaterial color="hotpink" />
-      </Box>
-      <OrbitControls autoRotate />
-      <Environment files="/potsdamer_platz_1k.hdr" background />
+    <Canvas>
+      <Stage>
+        <mesh>
+          <cylinderGeometry args={[1, 1, 0.5, 6, 2, false]} />
+          <meshPhongMaterial />
+        </mesh>
+        {/* <AgentCarr /> */}
+        {/* <axesHelper scale={3} /> */}
+      </Stage>
+      <OrbitControls />
+      {/* <PerspectiveCamera makeDefault position={[0, 4, 8]} fov={50} /> */}
     </Canvas>
   );
 };
 
+export const AgentCarrApp = () => {
+  return (
+    <Canvas camera={{ position: [0, 5, 100], fov: 50 }}>
+      <ambientLight />
+      <directionalLight position={[10, 10, 5]} intensity={2} />
+      <directionalLight position={[-10, -10, -5]} intensity={1} />
+      <AgentCarr />
+      <OrbitControls />
+      <Environment files="/potsdamer_platz_1k.hdr" background />
+    </Canvas>
+  );
+};
 export const FirstCarApp = () => {
   return (
     <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
@@ -71,7 +82,6 @@ export const FloatingIslandApp = () => {
     </Canvas>
   );
 };
-
 export const Text3DExampleApp = ({ margin = 0.5 }) => {
   const { width, height } = useThree((state) => state.viewport);
   const magenta = new Color("#ff2080");
