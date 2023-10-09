@@ -14,7 +14,12 @@ type HexCoordinates = {
 };
 
 const boardHexesArray = Object.values(giantsTableBoardHexes);
-
+const hexTerrainColor = {
+  grass: "#60840d",
+  water: "#3794fd",
+  rock: "#475776",
+  sand: "#ab8e10",
+};
 export function HexMap3D() {
   const ref = useRef(undefined!);
   const hexCoordToPosition = (hex: HexCoordinates) => {
@@ -24,12 +29,18 @@ export function HexMap3D() {
     const y = HEX_RADIUS * ((3 / 2) * hex.r) + HEX_SPACING;
     return { x, y };
   };
-  // effect where we create and update for all the hexes
+  // effect where we create and update instance mesh for all the hexes
   useLayoutEffect(() => {
     boardHexesArray.forEach((element, i) => {
       const t = hexCoordToPosition(element);
       threeHex.position.set(t.x, element.altitude / 4, t.y);
-      threeHex.scale.set(1, element.altitude, 1);
+      const heightScale = element.altitude === 0 ? 0.5 : element.altitude; // water, at 0 altitude, was rendering black darkness
+      threeHex.scale.set(1, heightScale, 1);
+      // color terrain
+      ref.current.setColorAt(
+        i,
+        new THREE.Color(hexTerrainColor[element.terrain])
+      );
       // update
       threeHex.updateMatrix();
       ref.current.setMatrixAt(i, threeHex.matrix);
@@ -38,23 +49,16 @@ export function HexMap3D() {
   }, []);
 
   /* 
-  instancedMesh 
-  
+  instancedMesh
   https://threejs.org/docs/#api/en/objects/InstancedMesh
     args: geometry, material, count
-      geometry - an instance of BufferGeometry.
-      material - an instance of Material. Default is a new MeshBasicMaterial.
-      count - the number of instances.
+      geometry - an instance of THREE.BufferGeometry
+      material - an instance of THREE.Material. Default is a new MeshBasicMaterial
+      count - the number of instances
   */
-
-  //  const redColor = new THREE.Color('red')
 
   return (
     <instancedMesh ref={ref} args={[null, null, boardHexesArray.length]}>
-      {/* <instancedBufferAttribute
-            attach="attributes-color"
-            args={[redColor, 3]}
-          /> */}
       <cylinderGeometry args={[1, 1, 0.5, 6]} />
       <meshLambertMaterial />
     </instancedMesh>
