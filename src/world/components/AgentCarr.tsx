@@ -1,31 +1,20 @@
-import { Suspense, useRef } from "react";
+import { Suspense } from "react";
 import { Gltf, useGLTF } from "@react-three/drei";
-import { GLTF } from "three-stdlib";
 import { ModelLoader } from "./ModelLoader";
+import { HexCoordinates, cubeToPixel } from "../HexMap3D";
 
-type GLTFResult = GLTF & {
-  nodes: {
-    mesh_0: THREE.Mesh;
-  };
-  materials: {};
-};
-
-export function AgentCarr() {
-  // const group = useRef();
-  // const { nodes } = useGLTF("/agent_carr_low_poly_colored_1.glb") as GLTFResult;
+export function MiniatureModel() {
+  const hex = { q: 4, r: 9, s: -13, altitude: 4, id: "4,9,-13" };
+  const pixel = cubeToPixel(hex as HexCoordinates);
   return (
     <Suspense fallback={<ModelLoader />}>
-      <Gltf src="/agent_carr_low_poly_colored_1.glb" receiveShadow castShadow />
-
-      {/* <group ref={group} dispose={null} scale={1}>
-        <mesh
-          castShadow
+      <group position={[pixel.x, hex.altitude / 4 + 1, pixel.y]}>
+        <Gltf
+          src="/agent_carr_low_poly_colored_1.glb"
           receiveShadow
-          geometry={nodes.mesh_0.geometry}
-          material={nodes.mesh_0.material}
-          rotation={[-Math.PI / 2, 0, 0]}
+          castShadow
         />
-      </group> */}
+      </group>
     </Suspense>
   );
 }

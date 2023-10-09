@@ -14,7 +14,7 @@ import {
   CameraControls,
 } from "@react-three/drei";
 
-import { AgentCarr } from "./components/AgentCarr";
+import { MiniatureModel } from "./components/AgentCarr";
 import { StarbucksCup } from "./components/StarbucksCup";
 import { FirstCar } from "./components/FirstCar";
 import { FloatingIsland } from "./components/FloatingIsland";
@@ -27,24 +27,26 @@ export function HexApp() {
       <directionalLight position={[150, 150, 150]} intensity={1} />
       <HexMap3D />
       <axesHelper position={[0, 1, 0]} scale={1000} />
-      <CameraControls />
+      {/* <CameraControls /> */}
       <PerspectiveCamera makeDefault position={[0, 4, 8]} fov={50} />
+      <MapControls />
     </Canvas>
   );
 }
-
 export const World = () => {
   return (
     <Canvas>
       <Stage>
-        <mesh>
-          <cylinderGeometry args={[1, 1, 0.5, 6, 2, false]} />
-          <meshPhongMaterial />
-        </mesh>
+        <MiniatureModel />
+        <ambientLight intensity={0.85} />
+        <directionalLight position={[150, 150, 150]} intensity={1} />
+        <HexMap3D />
+        {/* <axesHelper position={[0, 1, 0]} scale={1000} /> */}
         {/* <AgentCarr /> */}
         {/* <axesHelper scale={3} /> */}
+        <MapControls />
       </Stage>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       {/* <PerspectiveCamera makeDefault position={[0, 4, 8]} fov={50} /> */}
     </Canvas>
   );
@@ -56,7 +58,7 @@ export const AgentCarrApp = () => {
       <ambientLight />
       <directionalLight position={[10, 10, 5]} intensity={2} />
       <directionalLight position={[-10, -10, -5]} intensity={1} />
-      <AgentCarr />
+      <MiniatureModel />
       <OrbitControls />
       <Environment files="/potsdamer_platz_1k.hdr" background />
     </Canvas>
