@@ -20,19 +20,6 @@ import { FirstCar } from "./components/FirstCar";
 import { FloatingIsland } from "./components/FloatingIsland";
 import { HexMap3D } from "./HexMap3D";
 
-export function HexApp() {
-  return (
-    <Canvas camera={{ position: [0, 0, 0.01] }}>
-      <ambientLight intensity={0.85} />
-      <directionalLight position={[150, 150, 150]} intensity={1} />
-      <HexMap3D />
-      <axesHelper position={[0, 1, 0]} scale={1000} />
-      {/* <CameraControls /> */}
-      <PerspectiveCamera makeDefault position={[0, 4, 8]} fov={50} />
-      <MapControls />
-    </Canvas>
-  );
-}
 export const World = () => {
   return (
     <Canvas>
@@ -40,12 +27,13 @@ export const World = () => {
         <MiniatureModel />
         <ambientLight intensity={0.85} />
         <directionalLight position={[150, 150, 150]} intensity={1} />
+        <FloatingIsland />
         <HexMap3D />
-        {/* <axesHelper position={[0, 1, 0]} scale={1000} /> */}
         {/* <AgentCarr /> */}
-        {/* <axesHelper scale={3} /> */}
+        {/* <axesHelper position={[0, 1, 0]} scale={1000} /> */}
         <MapControls />
       </Stage>
+      {/* <CameraControls /> */}
       {/* <OrbitControls /> */}
       {/* <PerspectiveCamera makeDefault position={[0, 4, 8]} fov={50} /> */}
     </Canvas>

@@ -1,11 +1,4 @@
-import {
-  AgentCarrApp,
-  FirstCarApp,
-  FloatingIslandApp,
-  Text3DExampleApp,
-  World,
-  HexApp,
-} from "./world/World";
+import { World } from "./world/World";
 
 function App() {
   return (
