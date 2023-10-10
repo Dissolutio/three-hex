@@ -14,29 +14,38 @@ import {
   CameraControls,
 } from "@react-three/drei";
 
-import { MiniatureModel } from "./components/AgentCarr";
 import { StarbucksCup } from "./components/StarbucksCup";
 import { FirstCar } from "./components/FirstCar";
 import { FloatingIsland } from "./components/FloatingIsland";
 import { HexMap3D } from "./HexMap3D";
+import { SgtDrakeModel } from "./components/SgtDrakeModel";
+import { AgentCarrModel } from "./components/AgentCarrModel";
 
 export const World = () => {
+  const { width, height } = useThree((state) => state.viewport);
+  const margin = 0.5;
   return (
-    <Canvas>
+    <>
       <Stage>
-        <MiniatureModel />
         <ambientLight intensity={0.85} />
         <directionalLight position={[150, 150, 150]} intensity={1} />
         <FloatingIsland />
+        <Center bottom right position={[-width / 2 + margin + 4, height, 0]}>
+          <Text3D letterSpacing={-0.06} size={5} font="/Inter_Bold.json">
+            Lead as 2 Kings
+            <meshStandardMaterial color="black" />
+          </Text3D>
+        </Center>
         <HexMap3D />
-        {/* <AgentCarr /> */}
-        {/* <axesHelper position={[0, 1, 0]} scale={1000} /> */}
+        <SgtDrakeModel />
+        <AgentCarrModel />
+        <axesHelper position={[0, 1, 0]} scale={[50, 10, 30]} />
         <MapControls />
       </Stage>
       {/* <CameraControls /> */}
       {/* <OrbitControls /> */}
       {/* <PerspectiveCamera makeDefault position={[0, 4, 8]} fov={50} /> */}
-    </Canvas>
+    </>
   );
 };
 
@@ -46,7 +55,7 @@ export const AgentCarrApp = () => {
       <ambientLight />
       <directionalLight position={[10, 10, 5]} intensity={2} />
       <directionalLight position={[-10, -10, -5]} intensity={1} />
-      <MiniatureModel />
+      <SgtDrakeModel />
       <OrbitControls />
       <Environment files="/potsdamer_platz_1k.hdr" background />
     </Canvas>
@@ -78,7 +87,8 @@ export const Text3DExampleApp = ({ margin = 0.5 }) => {
   const green = new Color("#20ff80");
   const blue = new Color("#2080ff");
   return (
-    <Canvas orthographic camera={{ position: [0, 0, 100], zoom: 100 }}>
+    <>
+      {/* <Canvas orthographic camera={{ position: [0, 0, 100], zoom: 100 }}> */}
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 10]} />
       <Center
@@ -127,6 +137,7 @@ export const Text3DExampleApp = ({ margin = 0.5 }) => {
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}
       />
-    </Canvas>
+      {/* </Canvas> */}
+    </>
   );
 };
