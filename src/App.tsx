@@ -1,13 +1,22 @@
 import { Canvas } from "@react-three/fiber";
-import { Text3DExampleApp, World } from "./world/World";
+import { AgentCarrApp, Text3DExampleApp, World } from "./world/World";
+import { motion } from "framer-motion";
+import { LookAtApp } from "./world/LookAtApp";
+import { AgentCarrBetterModel } from "./world/components/AgentCarrBetterModel";
 
 function App() {
   return (
-    <div id="canvas-container" style={{ width: "100vw", height: "100vh" }}>
+    <motion.div
+      id="canvas-container"
+      // style={{ width: "500px", height: "500px" }}
+      style={{ width: "100vw", height: "100vh" }}
+    >
       {/* <HexApp /> */}
-      <Canvas>
+      {/* <Canvas>
         <World />
-      </Canvas>
+      </Canvas> */}
+      <AgentCarrApp />
+      {/* <LookAtApp /> */}
       {/* <AgentCarrApp /> */}
       {/* <FirstCarApp /> */}
 
@@ -16,7 +25,7 @@ function App() {
       </Canvas> */}
 
       {/* <FloatingIslandApp /> */}
-    </div>
+    </motion.div>
   );
 }
 export default App;

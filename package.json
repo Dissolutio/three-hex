@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@react-three/drei": "^9.83.9",
-    "@react-three/fiber": "^8.14.1",
+    "@react-three/fiber": "^8.14.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,6 +12,9 @@
     "@types/node": "^16.18.50",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "camera-controls": "^2.7.2",
+    "framer-motion-3d": "^10.16.4",
+    "randomcolor": "^0.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
